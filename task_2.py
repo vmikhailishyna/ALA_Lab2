@@ -29,6 +29,17 @@ cumulative_variance = np.cumsum(variance_ratio)
 cover_95 = np.argmax(cumulative_variance >= 0.95) + 1
 print("Number of components needed to cover 95% of the variance:", cover_95)
 
+
+plt.plot(cumulative_variance * 100)
+plt.xlabel('Principal components')
+plt.ylabel('Cumulative Explained variance')
+plt.title('Cumulative Explained Variance explained by the components')
+plt.axhline(y=95, color='black', linestyle='--')
+plt.axvline(x=cover_95, color='red', linestyle='--')
+plt.show()
+
+
+
 #Task 3.2.
 pca_1 = PCA(n_components=cover_95)
 X_pca_1 = pca_1.fit_transform(image_bw)
@@ -81,9 +92,9 @@ plt.title('Resulting image for 500 components data coverage,')
 plt.imshow(X_reconstructed_7, cmap='gray')
 plt.show()
 
-pca_8 = PCA(n_components=740)
-X_pca_8 = pca_8.fit_transform(image_bw)
-X_reconstructed_8 = pca_8.inverse_transform(X_pca_8)
-plt.title('Resulting image for 740 components data coverage,')
-plt.imshow(X_reconstructed_8, cmap='gray')
-plt.show()
+#pca_8 = PCA(n_components=740)
+#X_pca_8 = pca_8.fit_transform(image_bw)
+#X_reconstructed_8 = pca_8.inverse_transform(X_pca_8)
+#plt.title('Resulting image for 740 components data coverage,')
+#plt.imshow(X_reconstructed_8, cmap='gray')
+#plt.show()
